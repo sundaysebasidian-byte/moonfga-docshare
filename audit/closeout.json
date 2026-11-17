@@ -4,7 +4,8 @@
   "delivery": "_build/publish/sundaysebasidian-byte-moonfga-docshare-0.1.0.zip",
   "git": {
     "state": "Local commits only; source, tests and audit are tracked. Final HEAD is available with git log -1.",
-    "remotes": []
+    "remotes": [],
+    "base_commit": "4bb85759f719583593d21d5097180631bf21ea49"
   },
   "backup": "No remote or GitHub backup created or verified. Keep all current files.",
   "active_resources": "All task-started command sessions completed. No servers, browser pages or background tasks started.",
@@ -35,14 +36,16 @@
   "operations": [],
   "trash_destination": null,
   "df_before_kib": {
-    "available": 115551596,
-    "used": 325068368
+    "available": 110446008,
+    "used": 328076708
   },
   "df_after_kib": {
-    "available": 115012172,
-    "used": 325607792
+    "available": 109304556,
+    "used": 328169520
   },
   "bytes_moved": 0,
   "space_reclaimed_claimed": 0,
-  "space_note": "No move or deletion. Available space changes can reflect builds and concurrent system activity."
+  "space_note": "No move or deletion. Available space changes can reflect builds and concurrent system activity.",
+  "revision": "R1 review fixes",
+  "package_policy": ".moonignore excludes audit, closeout and evidence directories; final ZIP verified"
 }

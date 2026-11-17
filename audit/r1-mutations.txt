@@ -1,0 +1,20 @@
+A1: define editor: [user, group#member] or owner -> define editor: [user, group#member]
+$ moon test --deny-warn --target native
+[sundaysebasidian-byte/moonfga-docshare] test docshare_test.mbt:37 ("folder owner inherits document edit and view") failed: docshare_test.mbt:46:3-46:64@sundaysebasidian-byte/moonfga-docshare FAILED: `false` is not true
+Total tests: 10, passed: 9, failed: 1.
+exit: 2
+Model restored byte-for-byte after mutation.
+
+A2: define viewer: [user, group#member, user with before_expiry] -> define viewer: [user, user with before_expiry]
+$ moon test --deny-warn --target native
+[sundaysebasidian-byte/moonfga-docshare] test docshare_test.mbt:57 ("group shares directly on documents grant viewer and editor rights") failed: sundaysebasidian-byte/moonfga/fga.FgaError.FgaError
+Total tests: 10, passed: 9, failed: 1.
+exit: 2
+Model restored byte-for-byte after mutation.
+
+A4 regression check: eprintln -> println for CLI errors
+$ python3 scripts/test-cli.py native
+unexpected error response: 2: error: usage: check <tuples.json> <user> <document> <view|edit> <now RFC3339> | list <tuples.json> <user> <now RFC3339>
+
+exit: 1
+CLI restored byte-for-byte after regression check.

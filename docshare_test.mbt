@@ -34,6 +34,66 @@ test "group membership inherits edit and view through the parent" {
 }
 
 ///|
+test "folder owner inherits document edit and view" {
+  let service = @docshare.DocShare::from_json(
+    (
+      #|[
+      #|  {"object":"folder:owned","relation":"owner","user":"user:owner"},
+      #|  {"object":"document:child","relation":"parent","user":"folder:owned"}
+      #|]
+    ),
+  )
+  assert_true(service.can_edit("user:owner", "document:child"))
+  assert_true(
+    service.can_view("user:owner", "document:child", "2030-01-01T00:00:00Z"),
+  )
+  @debug.assert_eq(
+    service.list_viewable_documents("user:owner", "2030-01-01T00:00:00Z"),
+    ["document:child"],
+  )
+}
+
+///|
+test "group shares directly on documents grant viewer and editor rights" {
+  let service = @docshare.DocShare::from_json(
+    (
+      #|[
+      #|  {"object":"group:team","relation":"member","user":"user:member"}
+      #|]
+    ),
+  )
+  assert_true(
+    service.share_document(
+      "document:view",
+      "group:team#member",
+      @docshare.Viewer,
+    ),
+  )
+  assert_true(
+    service.share_document(
+      "document:edit",
+      "group:team#member",
+      @docshare.Editor,
+    ),
+  )
+  assert_true(
+    service.can_view("user:member", "document:view", "2030-01-01T00:00:00Z"),
+  )
+  assert_false(service.can_edit("user:member", "document:view"))
+  assert_true(service.can_edit("user:member", "document:edit"))
+  assert_true(
+    service.can_view("user:member", "document:edit", "2030-01-01T00:00:00Z"),
+  )
+  assert_false(
+    service.can_view("user:outsider", "document:view", "2030-01-01T00:00:00Z"),
+  )
+  @debug.assert_eq(
+    service.list_viewable_documents("user:member", "2030-01-01T00:00:00Z"),
+    ["document:edit", "document:view"],
+  )
+}
+
+///|
 test "CEL conditional view allows before expiry and denies at or after expiry" {
   let service = fixture()
   assert_true(

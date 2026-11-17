@@ -1,5 +1,7 @@
 pkgtype(kind: "executable")
 
+supported_targets = "+native+js"
+
 import {
   "sundaysebasidian-byte/moonfga-docshare" @docshare,
   "sundaysebasidian-byte/moonfga/fga",
@@ -10,8 +12,5 @@ import {
 }
 
 options(
-  targets: {
-    "args_js.mbt": [ "js" ],
-    "args_other.mbt": [ "native", "wasm", "wasm-gc" ],
-  },
+  targets: { "args_js.mbt": [ "js" ], "args_other.mbt": [ "native" ] },
 )

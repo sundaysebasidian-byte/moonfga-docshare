@@ -7,6 +7,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = sys.argv[1] if len(sys.argv) == 2 else "native"
+if TARGET not in {"native", "js"}:
+    sys.exit("CLI supports native and js; wasm-gc is supported by the library only")
 NOW = "2030-01-01T00:00:00Z"
 EXPIRY = "2030-01-02T00:00:00Z"
 
@@ -34,7 +36,7 @@ cases = [
 actual = ""
 for args in cases:
     result = run(args)
-    if result.returncode:
+    if result.returncode or result.stderr:
         sys.exit(result.stderr + result.stdout)
     actual += result.stdout
 expected = (ROOT / "sample/expected.txt").read_text()
@@ -51,7 +53,7 @@ for args, message in [
     (["check", "sample/tuples.json", "user:guest", "document:temporary", "view", "invalid"], "error:"),
 ]:
     result = run(args)
-    if result.returncode != 2 or message not in result.stdout:
+    if result.returncode != 2 or result.stdout or message not in result.stderr:
         sys.exit(f"unexpected error response: {result.returncode}: {result.stdout}{result.stderr}")
 
 print(f"CLI ({TARGET}): {len(cases)} expected outputs + 5 error cases passed")

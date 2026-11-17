@@ -1,5 +1,8 @@
 # Local validation
 
+Initial delivery results below; the current revision is recorded in
+[r1-validation.md](r1-validation.md).
+
 Environment: macOS arm64; `MOON_HOME=/tmp/moon-new`, its `bin` first on PATH.
 `moon 0.1.20261104 (940aa18 2026-11-04)`;
 `moonc v0.10.20+65efd5b93 (2026-11-05)`.

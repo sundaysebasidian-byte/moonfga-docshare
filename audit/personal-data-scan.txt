@@ -1,5 +1,5 @@
-PASS: 21 tracked first-party files; rg --pcre2 found no personal-data matches after allowing the required package namespace.
+R1 PASS: 25 first-party files, local Git identity metadata and final ZIP text payload.
+rg --pcre2 found no personal-data matches after allowing the required package namespace.
 Checks: local account identity, email addresses, personal home paths, formatted phone numbers.
-The same patterns passed on local Git config/HEAD/description and the package text payload.
-Git author and committer are moonfga-docshare contributors with an empty email.
+Git authors and committers are moonfga-docshare contributors with an empty email.
 Fixture users are synthetic role IDs. Third-party dependencies and generated build caches are excluded.

@@ -37,7 +37,7 @@ fn run(args : Array[String]) -> Unit raise @fga.FgaError {
 fn main {
   run(arguments()) catch {
     err => {
-      println("error: " + @fga.error_message(err))
+      eprintln("error: " + @fga.error_message(err))
       @sys.exit(2)
     }
   }

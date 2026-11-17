@@ -1,0 +1,70 @@
+R1 validation with MOON_HOME=/tmp/moon-new and its bin first on PATH.
+
+$ moon version
+moon 0.1.20261104 (940aa18 2026-11-04)
+
+Feature flags enabled: rr_moon_mod,rr_moon_pkg
+exit: 0
+
+$ moon fmt
+Finished. moon: ran 8 tasks, now up to date
+exit: 0
+
+$ moon fmt --check
+Finished. moon: ran 8 tasks, now up to date
+exit: 0
+
+$ moon check --deny-warn --target native
+Finished. moon: no work to do
+exit: 0
+
+$ moon test --deny-warn --target native
+Total tests: 10, passed: 10, failed: 0.
+exit: 0
+
+$ python3 scripts/test-cli.py native
+CLI (native): 11 expected outputs + 5 error cases passed
+exit: 0
+
+$ moon check --deny-warn --target js
+Finished. moon: ran 2 tasks, now up to date
+exit: 0
+
+$ moon test --deny-warn --target js
+Total tests: 10, passed: 10, failed: 0.
+exit: 0
+
+$ python3 scripts/test-cli.py js
+CLI (js): 11 expected outputs + 5 error cases passed
+exit: 0
+
+$ moon check --deny-warn --target wasm-gc
+Finished. moon: no work to do
+exit: 0
+
+$ moon test --deny-warn --target wasm-gc
+Total tests: 10, passed: 10, failed: 0.
+exit: 0
+
+$ moon package --list
+Warning: 'repository' field is not set or empty in module manifest
+Running moon check ...
+Finished. moon: ran 13 tasks, now up to date
+Check passed
+LICENSE
+README.md
+cmd/main/args_js.mbt
+cmd/main/args_other.mbt
+cmd/main/main.mbt
+cmd/main/moon.pkg
+cmd/main/pkg.generated.mbti
+docshare.mbt
+docshare_test.mbt
+moon.mod
+moon.pkg
+pkg.generated.mbti
+sample/expected.txt
+sample/tuples.json
+scripts/test-cli.py
+Package to <module-root>/_build/publish/sundaysebasidian-byte-moonfga-docshare-0.1.0.zip
+exit: 0

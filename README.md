@@ -42,13 +42,11 @@ and [conformance evidence](https://github.com/sundaysebasidian-byte/moonfga/blob
 
 ## Reproduce locally
 
-Requires MoonBit `moon 0.1.20261104`, a native C compiler, and Python 3.
+Requires any `moon >= 0.1.20261104` on PATH, a native C compiler, and Python 3.
 JS tests additionally require Node.js; wasm-gc uses the toolchain's `moonrun`.
 Run from this module's root:
 
 ```sh
-export MOON_HOME=/tmp/moon-new
-export PATH="$MOON_HOME/bin:$PATH"
 moon version
 moon add sundaysebasidian-byte/moonfga@0.2.5
 moon add moonbitlang/x@0.5.7
@@ -83,11 +81,17 @@ list <tuples.json> <user> <now RFC3339>
 
 Check prints one boolean; list prints a JSON array sorted lexicographically.
 Both allowed and denied decisions exit 0. Usage, file, parse, and evaluation
-errors print `error: ...` and exit 2. The time argument is unused for `edit`.
+errors print `error: ...` to stderr, leave stdout empty, and exit 2.
+The time argument is unused for `edit`.
+
+The CLI supports native and JS. The library also supports wasm-gc, but the
+validated toolchain's wasm-gc `eprintln` falls back to stdout, so the CLI does not
+support that target's error-stream contract.
 
 `scripts/test-cli.py` runs the real CLI against bundled data, compares 11 outputs
-byte for byte with `sample/expected.txt`, and checks five nonzero error cases.
-The eight library tests cover inheritance, groups, conditional allow/deny,
+byte for byte with `sample/expected.txt`, and checks five error cases for exit 2,
+stderr diagnostics, and empty stdout. The ten library tests cover inheritance
+(including folder owners), direct document group shares, conditional allow/deny,
 unrelated subjects, ListObjects, sharing roles, and invalid inputs.
 
 ```sh
@@ -101,7 +105,8 @@ moon fmt --check
 The manual-only Ubuntu workflow is provided in `.github/workflows/ci.yml`.
 It is not activated in this local-only repository and has not been run on GitHub.
 It uses the official current stable installer; it may differ from the exact
-local toolchain recorded below. Installer instructions: [MoonBit downloads](https://www.moonbitlang.com/download/).
-See `audit/validation.md` for local validation and any unverified behavior.
+toolchain used for local validation. Installer instructions: [MoonBit downloads](https://www.moonbitlang.com/download/).
+Local validation records are in `audit/` in the source checkout. Internal audit,
+closeout, and evidence directories are excluded from the package by `.moonignore`.
 
 Apache-2.0. Copyright 2026 moonfga-docshare contributors.
