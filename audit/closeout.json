@@ -3,7 +3,7 @@
   "current_version": "0.1.0",
   "delivery": "_build/publish/sundaysebasidian-byte-moonfga-docshare-0.1.0.zip",
   "git": {
-    "state": "new standalone repository; local commit required before handoff",
+    "state": "Local commits only; source, tests and audit are tracked. Final HEAD is available with git log -1.",
     "remotes": []
   },
   "backup": "No remote or GitHub backup created or verified. Keep all current files.",
