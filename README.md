@@ -102,8 +102,7 @@ done
 moon fmt --check
 ```
 
-The manual-only Ubuntu workflow is provided in `.github/workflows/ci.yml`.
-It is not activated in this local-only repository and has not been run on GitHub.
+The Ubuntu workflow in `.github/workflows/ci.yml` runs on push, pull request and manual dispatch.
 It uses the official current stable installer; it may differ from the exact
 toolchain used for local validation. Installer instructions: [MoonBit downloads](https://www.moonbitlang.com/download/).
 Local validation records are in `audit/` in the source checkout. Internal audit,

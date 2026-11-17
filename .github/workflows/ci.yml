@@ -1,7 +1,9 @@
-name: Example checks
+name: CI
 
-# Local-only repository: this workflow has not been run on GitHub.
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
