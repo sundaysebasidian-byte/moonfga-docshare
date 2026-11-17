@@ -1,0 +1,4 @@
+PASS: 20 authored files, local Git config/HEAD/description, and package text payload.
+No local identity, email address, personal home path, or formatted phone number matched.
+The required package namespace is explicitly allowed; fixture users are synthetic role IDs.
+Third-party dependency and generated build caches are excluded from authored-file scanning.

@@ -1,0 +1,38 @@
+name: Example checks
+
+# Local-only repository: this workflow has not been run on GitHub.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install current stable MoonBit toolchain
+        shell: bash
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh -o "$RUNNER_TEMP/moon-install.sh"
+          bash "$RUNNER_TEMP/moon-install.sh"
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Resolve registry dependencies
+        run: moon update
+      - name: Check and test all example targets
+        shell: bash
+        run: |
+          moon version
+          moon fmt --check
+          for target in native js wasm-gc; do
+            moon check --deny-warn --target "$target"
+            moon test --deny-warn --target "$target"
+          done
+      - name: Verify CLI sample output
+        run: python3 scripts/test-cli.py native
+      - name: Validate package contents locally
+        run: moon package

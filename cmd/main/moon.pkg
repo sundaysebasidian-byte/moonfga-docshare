@@ -1,0 +1,17 @@
+pkgtype(kind: "executable")
+
+import {
+  "sundaysebasidian-byte/moonfga-docshare" @docshare,
+  "sundaysebasidian-byte/moonfga/fga",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+  "moonbitlang/x/fs",
+  "moonbitlang/x/sys",
+}
+
+options(
+  targets: {
+    "args_js.mbt": [ "js" ],
+    "args_other.mbt": [ "native", "wasm", "wasm-gc" ],
+  },
+)

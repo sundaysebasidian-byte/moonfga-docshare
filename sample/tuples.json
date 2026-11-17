@@ -1,0 +1,10 @@
+[
+  {"object":"group:team","relation":"member","user":"user:member"},
+  {"object":"folder:shared","relation":"editor","user":"group:team#member"},
+  {"object":"folder:shared","relation":"viewer","user":"user:reader"},
+  {"object":"document:guide","relation":"parent","user":"folder:shared"},
+  {"object":"document:notes","relation":"parent","user":"folder:shared"},
+  {"object":"document:private","relation":"owner","user":"user:owner"},
+  {"object":"document:temporary","relation":"viewer","user":"user:guest",
+   "condition":{"name":"before_expiry","context":{"expires_at":"2030-01-02T00:00:00Z"}}}
+]

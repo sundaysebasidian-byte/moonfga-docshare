@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "sundaysebasidian-byte/moonfga-docshare"
+
+import {
+  "sundaysebasidian-byte/moonfga/fga",
+}
+
+// Values
+pub fn model_source() -> String
+
+// Errors
+
+// Types and methods
+pub struct DocShare {
+  // private fields
+}
+pub fn DocShare::can_edit(Self, String, String) -> Bool raise @fga.FgaError
+pub fn DocShare::can_view(Self, String, String, String) -> Bool raise @fga.FgaError
+pub fn DocShare::from_json(String) -> Self raise @fga.FgaError
+pub fn DocShare::list_viewable_documents(Self, String, String) -> Array[String] raise @fga.FgaError
+pub fn DocShare::new() -> Self raise @fga.FgaError
+pub fn DocShare::share_document(Self, String, String, Role) -> Bool raise @fga.FgaError
+
+pub(all) enum Role {
+  Viewer
+  Editor
+  Owner
+}
+
+// Type aliases
+
+// Traits

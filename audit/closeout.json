@@ -1,0 +1,48 @@
+{
+  "scope": ".",
+  "current_version": "0.1.0",
+  "delivery": "_build/publish/sundaysebasidian-byte-moonfga-docshare-0.1.0.zip",
+  "git": {
+    "state": "new standalone repository; local commit required before handoff",
+    "remotes": []
+  },
+  "backup": "No remote or GitHub backup created or verified. Keep all current files.",
+  "active_resources": "All task-started command sessions completed. No servers, browser pages or background tasks started.",
+  "candidates": [
+    {
+      "path": "_build",
+      "action": "retain",
+      "reason": "Current native/JS/wasm-gc build and test evidence plus delivery package",
+      "reproduce": "Pinned local toolchain; moon check/test per target; moon package"
+    },
+    {
+      "path": ".mooncakes",
+      "action": "retain",
+      "reason": "Current registry-resolved dependency inputs needed to reproduce checks",
+      "reproduce": "moon update using committed registry versions"
+    }
+  ],
+  "protected": [
+    "current source",
+    "sample inputs and expected output",
+    "validation evidence",
+    "Git repository",
+    "shared toolchain outside task scope"
+  ],
+  "moved": [],
+  "blocked_moves": [],
+  "restore_mapping": [],
+  "operations": [],
+  "trash_destination": null,
+  "df_before_kib": {
+    "available": 115551596,
+    "used": 325068368
+  },
+  "df_after_kib": {
+    "available": 115012172,
+    "used": 325607792
+  },
+  "bytes_moved": 0,
+  "space_reclaimed_claimed": 0,
+  "space_note": "No move or deletion. Available space changes can reflect builds and concurrent system activity."
+}
